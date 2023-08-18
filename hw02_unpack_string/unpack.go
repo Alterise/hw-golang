@@ -15,7 +15,7 @@ func Unpack(str string) (string, error) {
 	}
 
 	var sb strings.Builder
-	var runes = []rune(str)
+	runes := []rune(str)
 	var rune1 rune
 	var rune2 rune
 
