@@ -23,17 +23,20 @@ func Unpack(str string) (string, error) {
 		rune1 = runes[i-1]
 		rune2 = runes[i]
 
-		if unicode.IsDigit(rune2) {
+		// Тут был if-else, но линтер заставил поменять его на switch
+		// Имхо, выглядеть стало хуже
+		switch {
+		case unicode.IsDigit(rune2):
 			digit, _ := strconv.Atoi(string(rune2))
 			if unicode.IsDigit(rune1) {
 				return "", ErrInvalidString
 			}
 			sb.WriteString(strings.Repeat(string(rune1), digit))
 			i += 2
-		} else if !unicode.IsDigit(rune1) {
+		case !unicode.IsDigit(rune1):
 			sb.WriteRune(rune1)
 			i++
-		} else {
+		default:
 			return "", ErrInvalidString
 		}
 	}
