@@ -27,8 +27,10 @@ func Top10(input string) []string {
 
 	pairs := make([]pair, len(wordsFrequencies))
 
+	i := 0
 	for key, value := range wordsFrequencies {
-		pairs = append(pairs, pair{key, value})
+		pairs[i] = pair{key, value}
+		i++
 	}
 
 	sort.Slice(pairs, func(i, j int) bool {
