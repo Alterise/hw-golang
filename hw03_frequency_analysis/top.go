@@ -17,14 +17,15 @@ func Top10(input string) []string {
 	wordsFrequencies := make(map[string]int)
 
 	for _, word := range words {
-		if _, ok := wordsFrequencies[word]; ok {
+		_, ok := wordsFrequencies[word]
+		if ok {
 			wordsFrequencies[word]++
 		} else {
 			wordsFrequencies[word] = 1
 		}
 	}
 
-	var pairs []pair
+	pairs := make([]pair, len(wordsFrequencies))
 
 	for key, value := range wordsFrequencies {
 		pairs = append(pairs, pair{key, value})
